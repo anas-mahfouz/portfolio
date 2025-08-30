@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="imagesfavicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anas Mohamed | Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #0f0f0f, #1b1b1b);
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0d0d0d, #222);
+      animation: fadeIn 2s ease;
+    }
+
+    header h1 {
+      font-size: 4rem;
+      margin: 0;
+      background: linear-gradient(90deg, #1db954, #00c6ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slideInDown 1.5s ease;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      color: #bbb;
+      margin-top: 15px;
+      animation: slideInUp 2s ease;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+      animation: fadeUp 2s ease;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      animation: bounceIn 1.5s ease;
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #1db954, #00c6ff);
+      animation: expand 2s forwards;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .project-card {
+      background: #151515;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transform: scale(0.9);
+      opacity: 0;
+      animation: zoomIn 1.5s forwards;
+    }
+
+    .project-card:nth-child(1) { animation-delay: 0.3s; }
+    .project-card:nth-child(2) { animation-delay: 0.6s; }
+    .project-card:nth-child(3) { animation-delay: 0.9s; }
+
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      transition: 0.4s;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #0d0d0d;
+      animation: fadeInUp 2s ease;
+    }
+
+
+    .social-links a {
+  font-size: 28px;
+  color: #fff;
+  margin: 0 12px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: scale(1.3);
+  color: #00ff88;
+}
+.certificates-section {
+  padding: 80px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.certificates-section .section-title {
+  font-size: 36px;
+  margin-bottom: 40px;
+  position: relative;
+  animation: fadeInDown 1s ease;
+}
+
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.certificate-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeInUp 1s ease;
+}
+
+.certificate-card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.certificate-card h3 {
+  font-size: 22px;
+  margin: 10px 0;
+}
+
+.certificate-card p {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.certificate-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 20px rgba(0,255,150,0.5);
+}
+
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes slideInDown {
+      from {transform: translateY(-100px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+    @keyframes slideInUp {
+      from {transform: translateY(100px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(50px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes bounceIn {
+      0% {transform: scale(0.3); opacity: 0;}
+      50% {transform: scale(1.05); opacity: 1;}
+      70% {transform: scale(0.9);}
+      100% {transform: scale(1);}
+    }
+    @keyframes expand {
+      from {width: 0;}
+      to {width: 100%;}
+    }
+    @keyframes zoomIn {
+      from {opacity: 0; transform: scale(0.7);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    @keyframes pulse {
+      0%, 100% {transform: scale(1);}
+      50% {transform: scale(1.1);}
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/4b42e6c5d2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1>Anas Mohamed</h1>
+    <p>Web Developer | Ethical Hacker | Game Development</p>
+  </header>
+
+  <section>
+    <h2>About Me</h2>
+    <p>
+      Hi, I'm Anas Mohamed. A Web developer. This is my personal space to showcase my work, projects, and ways to connect with me.
+    </p>
+  </section>
+
+  <section>
+    <h2>My Experiences</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h2>Ethical Hacker</h2>
+        <p>completed "Ethical Hacker Course" & "introduction of cyber security" from Cisco</p>
+      </div>
+      <div class="project-card">
+        <h2>Game Developer</h2>
+        <p>game developer with godot</p>
+      </div>
+      <div class="project-card">
+        <h2>Web Developer</h2>
+        <p>have full knowledge about "HTML , CSS , JQuery , BootStrap , Java Script"</p>
+      </div>
+    </div>
+  </section>
+<!-- ===== Certificates Section ===== -->
+<section id="certificates" class="certificates-section">
+  <h2 class="section-title">My Certificates</h2>
+  <div class="certificates-grid">
+    
+    <!-- Certificate Card 1 -->
+    <div class="certificate-card">
+      <img src="imagescertificate1.png" alt="Certificate 1">
+      <h3>Introduction Of Cybersecurity</h3>
+      <p>Issued by CISCO Academy</p>
+    </div>
+
+    <!-- Certificate Card 2 -->
+    <div class="certificate-card">
+      <img src="imagescertificate2.png" alt="Certificate 2">
+      <h3>Ethical Hacker</h3>
+      <p>Issued by CISCO Academy</p>
+    </div>
+
+    <!-- Certificate Card 3 -->
+    <div class="certificate-card">
+      <img src="imagescertificate3.png" alt="Certificate 3">
+      <h3>Web Development</h3>
+      <p>Issued by ROBOTICO Academy</p>
+    </div>
+
+    <!-- Certificate Card 4 -->
+    <div class="certificate-card">
+      <img src="imagescertificate4.png" alt="Certificate 4">
+      <h3>PYTHON</h3>
+      <p>Issued by ROBOTICO Academy</p>
+    </div>
+
+    </div>
+
+  </div>
+</section>
+
+  <footer>
+    <div class="social-links">
+  <a href="https://www.linkedin.com/in/anas-mahfouz" target="blank">
+    <i class="fab fa-linkedin"></i>
+  </a>
+  <a href="https://github.com/anas-mahfouz" target="blank">
+    <i class="fab fa-github"></i>
+  </a>
+  <a href="https://wa.me/201277430528" target="blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+    <p>© 2025 Anas Mohamed. All rights reserved.</p>
+  </footer>
+</body>
+</html>
