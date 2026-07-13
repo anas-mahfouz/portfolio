@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="11zon_cropped (1).png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="QsKjQkjjyM2F5J-UEJ68CtsLX6GzmBNNom9WDjn9Y44" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anas Mahfouz</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #b92f2f, #d4cdcd);
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+
+    /* ===== Matrix Background ===== */
+    #matrix-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: #317010;
+      overflow: hidden;
+    }
+
+    #matrix-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 2s ease;
+    }
+
+    header h1 {
+      font-size: 4rem;
+      margin: 0;
+      background: linear-gradient(90deg, #1db954, #00c6ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slideInDown 1.5s ease;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      color: #bbb;
+      margin-top: 15px;
+      animation: slideInUp 2s ease;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+      animation: fadeUp 2s ease;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      animation: bounceIn 1.5s ease;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #1db954, #00c6ff);
+      animation: expand 2s forwards;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .project-card {
+      background: #151515;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transform: scale(0.9);
+      opacity: 0;
+      animation: zoomIn 1.5s forwards;
+    }
+
+    .project-card:nth-child(1) { animation-delay: 0.3s; }
+    .project-card:nth-child(2) { animation-delay: 0.6s; }
+    .project-card:nth-child(3) { animation-delay: 0.9s; }
+
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      transition: 0.4s;
+    }
+
+    .certificates-section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .certificate-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 20px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .certificate-card img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    .certificate-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 0 20px rgba(0,255,150,0.5);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #0d0d0d;
+    }
+
+    .social-links a {
+      font-size: 28px;
+      color: #fff;
+      margin: 0 12px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.3);
+      color: #00ff88;
+    }
+
+    /* Animations */
+    @keyframes fadeIn { from {opacity:0} to {opacity:1} }
+    @keyframes slideInDown { from {transform:translateY(-100px);opacity:0} to {transform:none;opacity:1} }
+    @keyframes slideInUp { from {transform:translateY(100px);opacity:0} to {transform:none;opacity:1} }
+    @keyframes fadeUp { from {opacity:0;transform:translateY(50px)} to {opacity:1;transform:none} }
+    @keyframes bounceIn { 0%{transform:scale(.3)} 100%{transform:scale(1)} }
+    @keyframes expand { from {width:0} to {width:100%} }
+    @keyframes zoomIn { from {opacity:0;transform:scale(.7)} to {opacity:1;transform:scale(1)} }
+  </style>
+</head>
+
+<body>
+
+  <!-- Matrix Background -->
+  <div id="matrix-bg">
+    <canvas id="matrix-canvas"></canvas>
+  </div>
+
+  <header>
+    <h1>Anas Mahfouz</h1>
+    <p>Web Developer | Cybersecurity | Game Development</p>
+  </header>
+
+  <section>
+    <h2>About Me</h2>
+    <p>Hi, I'm Anas Mahfouz, Olso Known As <Span>The 80</Span> in CTFs. This is my personal space to showcase my work.</p>
+  </section>
+
+  <section>
+    <h2>My Experiences</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h2>Cybersecurity</h2>
+        <p>Completed courses from Cisco</p>
+      </div>
+      <div class="project-card">
+        <h2>Game Development</h2>
+        <p>Game development sing Godot , UNITY engines</p>
+      </div>
+      <div class="project-card">
+        <h2>Web Development</h2>
+        <p>Html, Css, JavaScript, PHP</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Certificates Section ===== -->
+<section id="certificates" class="certificates-section">
+  <h2 class="section-title">My Certificates</h2>
+  <div class="certificates-grid">
+    
+
+    
+    <!-- Certificate Card 1 -->
+    <div class="certificate-card">
+      <img src="imagescertificate1.png" alt="Certificate 1">
+      <h3>Introduction Of Cybersecurity</h3>
+      <p>Issued by CISCO Academy</p>
+    </div>
+
+    <!-- Certificate Card 2 -->
+    <div class="certificate-card">
+      <img src="imagescertificate2.png" alt="Certificate 2">
+      <h3>Ethical Hacker</h3>
+      <p>Issued by CISCO Academy</p>
+    </div>
+
+                <!-- Certificate Card 6 -->
+    <div class="certificate-card">
+      <img src="JavaScriptEssentials1Update20251127-31-pud3if-1.png" alt="Certificate 5">
+      <h3>Java Script</h3>
+      <p>Issued by CISCO Academy</p>
+    </div>
+
+    <!-- Certificate Card c -->
+    <div class="certificate-card">
+      <img src="certificate22.jpeg" alt="Certificate 1">
+      <h3>Cybersecurity</h3>
+      <p>Issued by MEGAMINDS</p>
+    </div>
+
+    <!-- Certificate Card Q -->
+    <div class="certificate-card">
+      <img src="certificate.jpg" alt="Certificate 1">
+      <h3>JavaScript</h3>
+      <p>Issued by Sprix - Hiroshima University</p>
+    </div>
+
+        <!-- Certificate Card 6 -->
+    <div class="certificate-card">
+      <img src="Anas_page-0001 (1).jpg" alt="Certificate 6">
+      <h3>Game Development "UNITY"</h3>
+      <p>Issued by MEGAMINDS Academy</p>
+    </div>
+
+        <!-- Certificate Card 5 -->
+    <div class="certificate-card">
+      <img src="imagescertificate5.png" alt="Certificate 5">
+      <h3>Godot</h3>
+      <p>Issued by MEGAMINDS Academy</p>
+    </div>
+
+        <!-- Certificate Card 4 -->
+    <div class="certificate-card">
+      <img src="imagescertificate4.png" alt="Certificate 4">
+      <h3>PYTHON</h3>
+      <p>Issued by ROBOTICO Academy</p>
+    </div>
+      
+
+    <!-- Certificate Card 3 -->
+    <div class="certificate-card">
+      <img src="imagescertificate3.png" alt="Certificate 3">
+      <h3>Web Development</h3>
+      <p>Issued by ROBOTICO Academy</p>
+    </div>
+
+    </div>
+
+  </div>
+</section>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/anas-mahfouz/"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/anas-mahfouz"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <p>© 2025 All Rights Received To <span>Anas Mahfouz - The 80</span></p>
+  </footer>
+
+  <!-- Matrix JS -->
+  <script>
+    const canvas = document.getElementById("matrix-canvas");
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*+-";
+    const fontSize = 16;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(0);
+
+    function draw() {
+      ctx.fillStyle = "rgba(2,13,18,0.12)";
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = "#00ff9c";
+      ctx.font = fontSize + "px monospace";
+
+      drops.forEach((y, i) => {
+        const text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text, i*fontSize, y*fontSize);
+        drops[i] = y*fontSize > canvas.height && Math.random() > 0.98 ? 0 : y+1;
+      });
+    }
+
+    setInterval(draw, 55);
+  </script>
+
+</body>
+</html>
+
+
+
