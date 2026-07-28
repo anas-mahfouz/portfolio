@@ -1,45 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="QsKjQkjjyM2F5J-UEJ68CtsLX6GzmBNNom9WDjn9Y44" />
+  <title>Anas Mahfouz | The 80</title>
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="11zon_cropped (1).png">
+  
+  <!-- Font Awesome & Google Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <meta charset="UTF-8">
-  <meta name="google-site-verification" content="QsKjQkjjyM2F5J-UEJ68CtsLX6GzmBNNom9WDjn9Y44" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anas Mahfouz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg-color: #080b10;
+      --card-bg: rgba(18, 26, 36, 0.65);
+      --card-border: rgba(0, 255, 156, 0.15);
+      --primary: #00ff9c;
+      --secondary: #00c6ff;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(120deg, #b92f2f, #d4cdcd);
-      color: #f0f0f0;
+      background-color: var(--bg-color);
+      color: var(--text-main);
       overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    /* ===== Matrix Background ===== */
-    #matrix-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background: #317010;
-      overflow: hidden;
-    }
-
+    /* ===== Matrix Background Canvas ===== */
     #matrix-canvas {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      opacity: 0.35;
     }
 
+    /* ===== Layout & Sections ===== */
+    container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 80px auto;
+      padding: 30px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ===== Typography & Headers ===== */
+    h2 {
+      font-family: 'Fira Code', monospace;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      color: #fff;
+      display: inline-block;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    span.highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* ===== Hero Header ===== */
     header {
       height: 100vh;
       display: flex;
@@ -47,81 +100,102 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      animation: fadeIn 2s ease;
+      padding: 0 20px;
     }
 
     header h1 {
-      font-size: 4rem;
-      margin: 0;
-      background: linear-gradient(90deg, #1db954, #00c6ff);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #ffffff 30%, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: slideInDown 1.5s ease;
     }
 
     header p {
-      font-size: 1.3rem;
-      color: #bbb;
+      font-family: 'Fira Code', monospace;
+      font-size: 1.2rem;
+      color: var(--text-muted);
       margin-top: 15px;
-      animation: slideInUp 2s ease;
+      border-right: 2px solid var(--primary);
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
     }
 
-    section {
-      max-width: 1100px;
-      margin: 60px auto;
-      padding: 0 20px;
-      animation: fadeUp 2s ease;
+    /* ===== Social Grid ===== */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
     }
 
-    h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      position: relative;
-      display: inline-block;
-      animation: bounceIn 1.5s ease;
+    .social-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
     }
 
-    h2::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, #1db954, #00c6ff);
-      animation: expand 2s forwards;
+    .social-item i {
+      font-size: 1.2rem;
+      color: var(--secondary);
     }
 
-    .projects {
+    .social-item:hover {
+      background: rgba(0, 255, 156, 0.1);
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 5px 15px rgba(0, 255, 156, 0.15);
+    }
+
+    .social-item:hover i {
+      color: var(--primary);
+    }
+
+    /* ===== Experience / Projects Cards ===== */
+    .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
     }
 
     .project-card {
-      background: #151515;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-      transform: scale(0.9);
-      opacity: 0;
-      animation: zoomIn 1.5s forwards;
+      background: rgba(10, 15, 22, 0.8);
+      padding: 30px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
-    .project-card:nth-child(1) { animation-delay: 0.3s; }
-    .project-card:nth-child(2) { animation-delay: 0.6s; }
-    .project-card:nth-child(3) { animation-delay: 0.9s; }
+    .project-card h3 {
+      font-size: 1.4rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
 
     .project-card:hover {
-      transform: translateY(-10px) scale(1.05);
-      transition: 0.4s;
+      transform: translateY(-8px);
+      border-color: var(--secondary);
     }
 
-    .certificates-section {
-      padding: 80px 20px;
-      text-align: center;
-    }
-
+    /* ===== Certificates ===== */
     .certificates-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -129,214 +203,247 @@
     }
 
     .certificate-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 20px;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      background: rgba(10, 15, 22, 0.8);
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      transition: all 0.3s ease;
     }
 
     .certificate-card img {
       width: 100%;
-      border-radius: 15px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .certificate-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+
+    .certificate-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
 
     .certificate-card:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 0 20px rgba(0,255,150,0.5);
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 20px rgba(0, 255, 156, 0.1);
     }
 
+    /* ===== Footer ===== */
     footer {
       text-align: center;
-      padding: 40px;
-      background: #0d0d0d;
+      padding: 40px 20px;
+      background: #040609;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
-    .social-links a {
-      font-size: 28px;
-      color: #fff;
-      margin: 0 12px;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-
-    .social-links a:hover {
-      transform: scale(1.3);
-      color: #00ff88;
+    footer span {
+      color: var(--primary);
     }
 
     /* Animations */
-    @keyframes fadeIn { from {opacity:0} to {opacity:1} }
-    @keyframes slideInDown { from {transform:translateY(-100px);opacity:0} to {transform:none;opacity:1} }
-    @keyframes slideInUp { from {transform:translateY(100px);opacity:0} to {transform:none;opacity:1} }
-    @keyframes fadeUp { from {opacity:0;transform:translateY(50px)} to {opacity:1;transform:none} }
-    @keyframes bounceIn { 0%{transform:scale(.3)} 100%{transform:scale(1)} }
-    @keyframes expand { from {width:0} to {width:100%} }
-    @keyframes zoomIn { from {opacity:0;transform:scale(.7)} to {opacity:1;transform:scale(1)} }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--primary); }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- Matrix Background -->
-  <div id="matrix-bg">
-    <canvas id="matrix-canvas"></canvas>
-  </div>
+  <!-- Matrix Background Canvas -->
+  <canvas id="matrix-canvas"></canvas>
 
+  <!-- Hero Header -->
   <header>
     <h1>Anas Mahfouz</h1>
-    <p>Web Developer | Cybersecurity | Game Development</p>
+    <p>Web Developer | Cybersecurity | Game Dev</p>
   </header>
 
+  <!-- About Me Section -->
   <section>
     <h2>About Me</h2>
-    <p>Hi, I'm Anas Mahfouz, Olso Known As <Span>The 80</Span> in CTFs. This is my personal space to showcase my work.</p>
+    <p>Hi, I'm Anas Mahfouz, also known as <span class="highlight">The 80</span> in CTFs. Welcome to my personal space where I showcase my journeys in Cybersecurity, Software Engineering, and Game Development.</p>
   </section>
 
+  <!-- Social Media Section -->
+  <section>
+    <h2>Connect With Me</h2>
+    <div class="social-grid">
+      <a href="https://www.linkedin.com/in/anas-mahfouz/" target="_blank" class="social-item">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://github.com/anas-mahfouz" target="_blank" class="social-item">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      <a href="https://x.com/ansmahfouz" target="_blank" class="social-item">
+        <i class="fab fa-x-twitter"></i> X (Twitter)
+      </a>
+      <a href="https://www.instagram.com/ansmahfouz" target="_blank" class="social-item">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
+      <a href="https://www.facebook.com/anasmahfouzz" target="_blank" class="social-item">
+        <i class="fab fa-facebook"></i> Facebook
+      </a>
+      <a href="https://mykuteam.vercel.app" target="_blank" class="social-item">
+        <i class="fas fa-globe"></i> MYKU Team
+      </a>
+      <a href="https://www.youtube.com/@ansmahfouz" target="_blank" class="social-item">
+        <i class="fab fa-youtube"></i> YouTube
+      </a>
+      <a href="https://medium.com/@anasmahfouz" target="_blank" class="social-item">
+        <i class="fab fa-medium"></i> Medium
+      </a>
+      <a href="https://wa.me/+201277430528" target="_blank" class="social-item">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+            <a href="https://ctftime.org/team/441671" target="_blank" class="social-item">
+        <i class="fas fa-globe"></i> CTF Time
+      </a>
+    </div>
+  </section>
+
+  <!-- Experiences Section -->
   <section>
     <h2>My Experiences</h2>
-    <div class="projects">
+    <div class="projects-grid">
       <div class="project-card">
-        <h2>Cybersecurity</h2>
-        <p>Completed courses from Cisco</p>
+        <h3>Cybersecurity "active"</h3>
+        <p>Active CTF Competitor & Security Researcher. Completed multiple tracks with Cisco Academy.</p>
       </div>
       <div class="project-card">
-        <h2>Game Development</h2>
-        <p>Game development sing Godot , UNITY engines</p>
+        <h3>Game Development "not active now"</h3>
+        <p>Building interactive experiences using Unity (C#) and Godot Engine.</p>
       </div>
       <div class="project-card">
-        <h2>Web Development</h2>
-        <p>Html, Css, JavaScript, PHP</p>
+        <h3>Web Development  "not active now"</h3>
+        <p>Developing responsive web apps using HTML, CSS, JavaScript, and PHP.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== Certificates Section ===== -->
-<section id="certificates" class="certificates-section">
-  <h2 class="section-title">My Certificates</h2>
-  <div class="certificates-grid">
-    
+  <!-- Certificates Section -->
+  <section id="certificates">
+    <h2>My Certificates</h2>
+    <div class="certificates-grid">
+      <div class="certificate-card">
+        <img src="imagescertificate1.png" alt="Introduction to Cybersecurity">
+        <h3>Introduction to Cybersecurity</h3>
+        <p>Issued by CISCO Academy</p>
+      </div>
 
-    
-    <!-- Certificate Card 1 -->
-    <div class="certificate-card">
-      <img src="imagescertificate1.png" alt="Certificate 1">
-      <h3>Introduction Of Cybersecurity</h3>
-      <p>Issued by CISCO Academy</p>
+      <div class="certificate-card">
+        <img src="imagescertificate2.png" alt="Ethical Hacker">
+        <h3>Ethical Hacker</h3>
+        <p>Issued by CISCO Academy</p>
+      </div>
+
+      <div class="certificate-card">
+        <img src="JavaScriptEssentials1Update20251127-31-pud3if-1.png" alt="JavaScript Essentials">
+        <h3>JavaScript Essentials</h3>
+        <p>Issued by CISCO Academy</p>
+      </div>
+
+      <div class="certificate-card">
+        <img src="certificate22.jpeg" alt="Cybersecurity">
+        <h3>Cybersecurity Specialization</h3>
+        <p>Issued by MEGAMINDS</p>
+      </div>
+
+      <div class="certificate-card">
+        <img src="MYKU - Certificate.png" alt="Athena CTF">
+        <h3>Athena CTF Participant</h3>
+        <p>Rank #83 of #453 - Team MYKU Leader</p>
+      </div>
+
+      <div class="certificate-card">
+        <img src="certificate.jpg" alt="JavaScript Course">
+        <h3>JavaScript Certificate</h3>
+        <p>Issued by Sprix - Hiroshima University</p>
+      </div>
+
+      <div class="certificate-card">
+        <img src="Anas_page-0001 (1).jpg" alt="Unity Game Dev">
+        <h3>Game Development "Unity"</h3>
+        <p>Issued by MEGAMINDS Academy</p>
+      </div>
+
+      <div class="certificate-card">
+        <img src="imagescertificate5.png" alt="Godot Engine">
+        <h3>Godot Game Engine</h3>
+        <p>Issued by MEGAMINDS Academy</p>
+      </div>
+
+      <div class="certificate-card">
+        <img src="imagescertificate4.png" alt="Python Programming">
+        <h3>Python Programming</h3>
+        <p>Issued by ROBOTICO Academy</p>
+      </div>
+
+      <div class="certificate-card">
+        <img src="imagescertificate3.png" alt="Web Development">
+        <h3>Web Development</h3>
+        <p>Issued by ROBOTICO Academy</p>
+      </div>
     </div>
+  </section>
 
-    <!-- Certificate Card 2 -->
-    <div class="certificate-card">
-      <img src="imagescertificate2.png" alt="Certificate 2">
-      <h3>Ethical Hacker</h3>
-      <p>Issued by CISCO Academy</p>
-    </div>
-
-                <!-- Certificate Card 6 -->
-    <div class="certificate-card">
-      <img src="JavaScriptEssentials1Update20251127-31-pud3if-1.png" alt="Certificate 5">
-      <h3>Java Script</h3>
-      <p>Issued by CISCO Academy</p>
-    </div>
-
-    <!-- Certificate Card c -->
-    <div class="certificate-card">
-      <img src="certificate22.jpeg" alt="Certificate 1">
-      <h3>Cybersecurity</h3>
-      <p>Issued by MEGAMINDS</p>
-    </div>
-
-        <!-- Certificate Card ctf1 -->
-    <div class="certificate-card">
-      <img src="MYKU - Certificate.png" alt="Certificate 3">
-      <h3>Athena CTF</h3>
-      <p>Rank #83 of #453 As MYKU Team Leader First CTF For Team</p>
-    </div>
-
-    <!-- Certificate Card Q -->
-    <div class="certificate-card">
-      <img src="certificate.jpg" alt="Certificate 1">
-      <h3>JavaScript</h3>
-      <p>Issued by Sprix - Hiroshima University</p>
-    </div>
-
-        <!-- Certificate Card 6 -->
-    <div class="certificate-card">
-      <img src="Anas_page-0001 (1).jpg" alt="Certificate 6">
-      <h3>Game Development "UNITY"</h3>
-      <p>Issued by MEGAMINDS Academy</p>
-    </div>
-
-        <!-- Certificate Card 5 -->
-    <div class="certificate-card">
-      <img src="imagescertificate5.png" alt="Certificate 5">
-      <h3>Godot</h3>
-      <p>Issued by MEGAMINDS Academy</p>
-    </div>
-
-        <!-- Certificate Card 4 -->
-    <div class="certificate-card">
-      <img src="imagescertificate4.png" alt="Certificate 4">
-      <h3>PYTHON</h3>
-      <p>Issued by ROBOTICO Academy</p>
-    </div>
-      
-
-    <!-- Certificate Card 3 -->
-    <div class="certificate-card">
-      <img src="imagescertificate3.png" alt="Certificate 3">
-      <h3>Web Development</h3>
-      <p>Issued by ROBOTICO Academy</p>
-    </div>
-
-    </div>
-
-  </div>
-</section>
-
+  <!-- Footer -->
   <footer>
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/anas-mahfouz/"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/anas-mahfouz"><i class="fab fa-github"></i></a>
-      <a href="#"><i class="fab fa-whatsapp"></i></a>
-    </div>
-    <p>© 2025 All Rights Received To <span>Anas Mahfouz - The 80</span></p>
+    <p>© 2026 Designed & Built by <span>Anas Mahfouz (The 80)</span></p>
   </footer>
 
-  <!-- Matrix JS -->
+  <!-- Matrix Background JavaScript -->
   <script>
     const canvas = document.getElementById("matrix-canvas");
     const ctx = canvas.getContext("2d");
 
-    function resize() {
+    function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
-    resize();
-    window.addEventListener("resize", resize);
+    const chars = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*+-<>{}[]";
+    const fontSize = 14;
+    let columns = Math.floor(canvas.width / fontSize);
+    let drops = Array(columns).fill(1);
 
-    const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*+-";
-    const fontSize = 16;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(0);
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(8, 11, 16, 0.1)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    function draw() {
-      ctx.fillStyle = "rgba(2,13,18,0.12)";
-      ctx.fillRect(0,0,canvas.width,canvas.height);
       ctx.fillStyle = "#00ff9c";
-      ctx.font = fontSize + "px monospace";
+      ctx.font = fontSize + "px 'Fira Code', monospace";
 
-      drops.forEach((y, i) => {
-        const text = letters[Math.floor(Math.random()*letters.length)];
-        ctx.fillText(text, i*fontSize, y*fontSize);
-        drops[i] = y*fontSize > canvas.height && Math.random() > 0.98 ? 0 : y+1;
-      });
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
     }
 
-    setInterval(draw, 55);
+    setInterval(drawMatrix, 40);
   </script>
 
 </body>
 </html>
-
-
-
