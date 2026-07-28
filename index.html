@@ -32,6 +32,120 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    .writeup-card,
+.writeup-card *,
+.writeup-card a {
+  text-decoration: none !important;
+}
+.writeup-card {
+  display: block;
+  text-decoration: none;
+  max-width: 450px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(10, 15, 22, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+.writeups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 350px)); 
+  gap: 25px;
+  justify-content: center; 
+}
+
+.writeup-banner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 800 / 535;
+  background: #000;
+  overflow: hidden;
+}
+
+.writeup-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.writeup-banner .tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  background: rgba(8, 11, 16, 0.85);
+  color: #00ff9c;
+  border: 1px solid rgba(0, 255, 156, 0.3);
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  border-radius: 20px;
+  font-family: 'Fira Code', monospace;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+    .writeup-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .writeup-content h3 {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      transition: color 0.3s ease;
+    }
+
+    .writeup-content p {
+      font-size: 0.88rem;
+      color: var(--text-muted, #94a3b8);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .writeup-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted, #94a3b8);
+      font-family: 'Fira Code', monospace;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 12px;
+    }
+
+    .writeup-footer .read-btn {
+      color: var(--secondary, #00c6ff);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.3s ease, color 0.3s ease;
+    }
+
+    /* Hover Effects */
+    .writeup-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary, #00ff9c);
+      box-shadow: 0 10px 25px rgba(0, 255, 156, 0.12);
+    }
+
+    .writeup-card:hover .writeup-banner img {
+      transform: scale(1.08);
+    }
+
+    .writeup-card:hover .writeup-content h3 {
+      color: var(--primary, #00ff9c);
+    }
+
+    .writeup-card:hover .read-btn {
+      color: var(--primary, #00ff9c);
+      gap: 10px;
     :root {
       --bg-color: #080b10;
       --card-bg: rgba(18, 26, 36, 0.65);
@@ -354,6 +468,31 @@
     </div>
   </section>
 
+<!-- Write-ups Section -->
+  <section id="writeups">
+    <h2>Medium Write-ups</h2>
+    <div class="writeups-grid">
+      
+      <!-- Write-up Card 1 -->
+      <a href="https://medium.com/@anasmahfouz/eycc-26-metoubas-v1-challenge-write-up-by-the-80-d8a7e85cf328" target="_blank" class="writeup-card">
+        <div class="writeup-banner">
+          <img src="Untitled (800 x 535 px).png" alt="Write-up Cover">
+          <span class="tag">Reverse Engineering / Crypto</span>
+        </div>
+    
+        <div class="writeup-content">
+          <h3>EYCC 26 “Metoubas V1” Challenge Write-up by THE 80</h3>
+          <p>Challenge: Metoubas-v1 Category: Reverse Engineering / Crypto TL;DR: The ransomware encrypts files with textbook RSA using....</p>
+          <div class="writeup-footer">
+            <span><i class="far fa-calendar-alt"></i> Jul 2026</span>
+            <span class="read-btn">Read Article <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+  
   <!-- Certificates Section -->
   <section id="certificates">
     <h2>My Certificates</h2>
