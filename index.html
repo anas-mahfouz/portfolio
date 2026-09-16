@@ -142,6 +142,8 @@
       line-height: 1.7;
 
       overflow-x: hidden;
+
+      cursor: none;
     }
 
 
@@ -179,6 +181,97 @@
 
 
     /* =====================================================
+       CUSTOM CURSOR
+    ====================================================== */
+
+    @media (hover: hover) and (pointer: fine) {
+
+      #cursor-dot,
+      #cursor-ring {
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        pointer-events: none;
+
+        z-index: 9999;
+
+        border-radius: 50%;
+
+        transform: translate(-50%, -50%);
+
+        will-change: transform;
+      }
+
+
+      #cursor-dot {
+
+        width: 6px;
+        height: 6px;
+
+        background: var(--red-bright);
+
+        box-shadow:
+          0 0 8px var(--red),
+          0 0 16px var(--red-glow);
+      }
+
+
+      #cursor-ring {
+
+        width: 34px;
+        height: 34px;
+
+        border: 1px solid rgba(224, 0, 0, 0.55);
+
+        background: rgba(224, 0, 0, 0.04);
+
+        transition:
+          width .2s ease,
+          height .2s ease,
+          border-color .2s ease,
+          background .2s ease,
+          opacity .2s ease;
+      }
+
+
+      #cursor-ring.active {
+
+        width: 54px;
+        height: 54px;
+
+        border-color: var(--red-bright);
+
+        background: rgba(224, 0, 0, 0.1);
+      }
+
+
+      #cursor-ring.click {
+
+        width: 26px;
+        height: 26px;
+      }
+
+    }
+
+
+    @media (hover: none), (pointer: coarse) {
+
+      body {
+        cursor: auto;
+      }
+
+      #cursor-dot,
+      #cursor-ring {
+        display: none;
+      }
+
+    }
+
+
+    /* =====================================================
        MATRIX BACKGROUND
     ====================================================== */
 
@@ -196,6 +289,122 @@
       opacity: 0.16;
 
       pointer-events: none;
+    }
+
+
+    /* Soft red glow orbs drifting behind the content */
+
+    #glow-orbs {
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: -6;
+
+      pointer-events: none;
+
+      overflow: hidden;
+    }
+
+
+    #glow-orbs span {
+
+      position: absolute;
+
+      border-radius: 50%;
+
+      filter: blur(70px);
+
+      background: radial-gradient(
+        circle,
+        rgba(224, 0, 0, 0.30),
+        transparent 70%
+      );
+
+      animation: drift 22s ease-in-out infinite;
+    }
+
+
+    #glow-orbs span:nth-child(1) {
+
+      width: 380px;
+      height: 380px;
+
+      top: -10%;
+      left: 5%;
+
+      animation-duration: 26s;
+    }
+
+
+    #glow-orbs span:nth-child(2) {
+
+      width: 300px;
+      height: 300px;
+
+      top: 40%;
+      right: 0%;
+
+      animation-duration: 30s;
+      animation-delay: -8s;
+    }
+
+
+    #glow-orbs span:nth-child(3) {
+
+      width: 260px;
+      height: 260px;
+
+      bottom: -5%;
+      left: 35%;
+
+      animation-duration: 24s;
+      animation-delay: -14s;
+    }
+
+
+    @keyframes drift {
+
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(40px, -30px) scale(1.12);
+      }
+
+      66% {
+        transform: translate(-30px, 25px) scale(0.92);
+      }
+    }
+
+
+    /* Fine scanline overlay for a "monitor" feel */
+
+    body::after {
+
+      content: "";
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: -3;
+
+      pointer-events: none;
+
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.014) 0px,
+        rgba(255, 255, 255, 0.014) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+
+      mix-blend-mode: overlay;
+
+      opacity: 0.5;
     }
 
 
@@ -1554,10 +1763,24 @@
 
 
   <!-- =====================================================
+       CUSTOM CURSOR
+  ====================================================== -->
+
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+
+  <!-- =====================================================
        MATRIX BACKGROUND
   ====================================================== -->
 
   <canvas id="matrix-canvas"></canvas>
+
+  <div id="glow-orbs">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
 
   <!-- =====================================================
@@ -2828,6 +3051,122 @@
       updateCountdown,
       1000
     );
+
+  </script>
+
+
+  <!-- =====================================================
+       CUSTOM CURSOR JAVASCRIPT
+  ====================================================== -->
+
+  <script>
+
+    (function () {
+
+      const isFinePointer =
+        window.matchMedia(
+          "(hover: hover) and (pointer: fine)"
+        ).matches;
+
+      if (!isFinePointer) return;
+
+
+      const dot =
+        document.getElementById("cursor-dot");
+
+      const ring =
+        document.getElementById("cursor-ring");
+
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+
+      let ringX = mouseX;
+      let ringY = mouseY;
+
+
+      window.addEventListener(
+        "mousemove",
+        (e) => {
+
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+
+          dot.style.transform =
+            `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+        }
+      );
+
+
+      /* Ring trails the dot with easing, for a smoother feel */
+
+      function animateRing() {
+
+        ringX += (mouseX - ringX) * 0.16;
+        ringY += (mouseY - ringY) * 0.16;
+
+        ring.style.transform =
+          `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+
+        requestAnimationFrame(animateRing);
+      }
+
+      animateRing();
+
+
+      /* Grow the ring over links, buttons and cards */
+
+      const interactiveSelector =
+        "a, button, .hero-btn, .social-item, " +
+        ".project-card, .writeup-card, .certificate-card";
+
+      document.querySelectorAll(
+        interactiveSelector
+      ).forEach((el) => {
+
+        el.addEventListener(
+          "mouseenter",
+          () => ring.classList.add("active")
+        );
+
+        el.addEventListener(
+          "mouseleave",
+          () => ring.classList.remove("active")
+        );
+
+      });
+
+
+      window.addEventListener(
+        "mousedown",
+        () => ring.classList.add("click")
+      );
+
+      window.addEventListener(
+        "mouseup",
+        () => ring.classList.remove("click")
+      );
+
+
+      /* Hide the custom cursor when it leaves the window */
+
+      document.addEventListener(
+        "mouseleave",
+        () => {
+          dot.style.opacity = "0";
+          ring.style.opacity = "0";
+        }
+      );
+
+      document.addEventListener(
+        "mouseenter",
+        () => {
+          dot.style.opacity = "1";
+          ring.style.opacity = "1";
+        }
+      );
+
+    })();
 
   </script>
 
